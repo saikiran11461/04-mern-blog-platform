@@ -50,7 +50,8 @@ const blogController = {
                 return res.status({message:"body not set"})
             }
             let blog  = await blogModel.create(payload);
-            return res.status(200).send({message:"blog created Success", blog})
+            await redisClient.del("blogs");
+            return res.status(200).send({message:"blog created Success", blog});
         } catch (error) {
             return res.status(500).send({message:error})
         }
@@ -64,6 +65,8 @@ const blogController = {
                 return res.status(400).send({message:"id or body not set "})
             }
             let blog = await blogModel.findByIdAndUpdate(id,payload);
+            await redisClient.del(`blog:${id}`);
+            await redisClient.del("blogs");
             return res.status(200).send({message:'patched success',blog})
         } catch (error) {
             return res.status(500).send({message:error})
@@ -75,9 +78,9 @@ const blogController = {
             return res.send({message:"id not found"})
         }
         try {
-
-            await redisClient.del(`blog:${id}`);
             const blog  = await blogModel.findByIdAndDelete(id);
+            await redisClient.del(`blog:${id}`);
+            await redisClient.del("blogs");
             return res.status(200).send({message:"blog deleted success", blog})
         } catch (error) {
             return res.status(500).send({message:error})
