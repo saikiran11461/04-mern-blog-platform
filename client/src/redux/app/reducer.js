@@ -5,7 +5,8 @@ const init ={
     isLoading:false,
     isError:false,
     blogs:[],
-    userBlogs:[]
+    userBlogs:[],
+   
 }
 
 export const reducer = (oldState=init,action) =>{
@@ -45,14 +46,16 @@ export const reducer = (oldState=init,action) =>{
                 ...oldState,
                 isLoading:true,
                 isError:false,
-                userBlogs:payload
+                userBlogs:payload,
+               
             }
         case types.GET_USER_BLOGS_FAILURE:
             return{
                 ...oldState,
                 isLoading:false,
                 isError:true,
-                userBlogs:payload
+                userBlogs:payload,
+                
             }
         
         default:

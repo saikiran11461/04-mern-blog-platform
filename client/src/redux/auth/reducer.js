@@ -1,10 +1,14 @@
 import * as types from "./actionTypes"
+
+const user = JSON.parse(localStorage.getItem("user") || "null");
+
 const init = {
-    isLoading : false,
-    isError:false,
-    isAuth:false,
-    user:{}
-}
+    isLoading: false,
+    isError: false,
+    isAuth: !!user,
+    user: user || {},
+  };
+  
 
 
 export const reducer = (oldState = init, action) =>{

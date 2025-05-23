@@ -21,7 +21,7 @@ const ProfilePage = () => {
     },[dispatch])
 
 
- 
+
       const deleteHandler =(id)=>{
         dispatch(deleteUserBlogs(id))
         .then(res=>{

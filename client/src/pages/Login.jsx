@@ -29,6 +29,18 @@ const Login = () => {
         dispatch(postLogin(formData))
         .then(res=>{
           console.log(res)
+
+          console.log("status",res?.paload)
+
+          const user = {
+            id: res?.payload?.id,
+            name: res?.payload?.name,
+            email: res?.payload?.email,
+          };
+          
+          localStorage.setItem("user", JSON.stringify(user));
+          
+
            if(res?.payload?.status === 200){
              navigate("/")
            }
@@ -37,6 +49,9 @@ const Login = () => {
             console.log(err)
         })
     }
+
+
+    
 
 
 
