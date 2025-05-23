@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
-import { Box, Button, Input, Stack, Typography, Paper } from '@mui/material';
+import { Box, Input, Stack, Typography, Paper } from '@mui/material';
 import { useDispatch } from 'react-redux';
 import { postLogin } from '../redux/auth/action';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
 
     const dispatch  = useDispatch();
-
+    const navigate = useNavigate()
     const init ={
         email:"",
         password:""
@@ -27,7 +28,10 @@ const Login = () => {
         e.preventDefault()
         dispatch(postLogin(formData))
         .then(res=>{
-            console.log(res)
+          console.log(res)
+           if(res?.payload?.status === 200){
+             navigate("/")
+           }
         })
         .catch(err=>{
             console.log(err)

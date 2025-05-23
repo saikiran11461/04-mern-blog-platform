@@ -2,7 +2,8 @@ import * as types from "./actionTypes"
 const init = {
     isLoading : false,
     isError:false,
-    isAuth:false
+    isAuth:false,
+    user:{}
 }
 
 
@@ -41,7 +42,8 @@ export const reducer = (oldState = init, action) =>{
                       ...oldState,
                       isLoading:false,
                       isError:false,
-                      isAuth:payload
+                      isAuth:true,
+                      user:payload
                   }
               case types.POST_LOGIN_FAILURE:
                   return{

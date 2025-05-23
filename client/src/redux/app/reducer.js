@@ -4,7 +4,8 @@ import * as types from "./actionTypes"
 const init ={
     isLoading:false,
     isError:false,
-    blogs:[]
+    blogs:[],
+    userBlogs:[]
 }
 
 export const reducer = (oldState=init,action) =>{
@@ -32,6 +33,28 @@ export const reducer = (oldState=init,action) =>{
                 isError:true,
                 blogs:[]
             }
+        case types.GET_USER_BLOGS_REQUEST:
+            return{
+                ...oldState,
+                isLoading:true,
+                isError:false,
+                userBlogs:[]
+            }
+        case types.GET_USER_BLOGS_SUCCESS:
+            return{
+                ...oldState,
+                isLoading:true,
+                isError:false,
+                userBlogs:payload
+            }
+        case types.GET_USER_BLOGS_FAILURE:
+            return{
+                ...oldState,
+                isLoading:false,
+                isError:true,
+                userBlogs:payload
+            }
+        
         default:
             return oldState
     }

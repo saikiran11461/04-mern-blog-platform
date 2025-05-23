@@ -4,12 +4,14 @@ const { authentication } = require("../middlewares/authentication");
 const { blogValidation } = require("../validations/blog.validation");
 const { validateRequest } = require("../middlewares/validatorRequest");
 const { attachAuthenticator } = require("../middlewares/attachAuthencator");
+const {parser} = require("../middlewares/FileUploads")
 const blogRouter = express.Router();
 
 
-blogRouter.get("/", blogController.getBlogs);
+blogRouter.get("/",authentication, blogController.getBlogs);
+blogRouter.get("/userblogs",authentication, blogController.userBlogs)
 blogRouter.get("/:id", blogController.getSingleBlogs)
-blogRouter.post("/add", authentication,attachAuthenticator, blogValidation,validateRequest, blogController.creteBlogs)
+blogRouter.post("/add", authentication, parser.single("coverImage"),attachAuthenticator, blogValidation,validateRequest, blogController.createBlogs)
 blogRouter.patch("/:id", blogController.patchBlogs)
 blogRouter.delete("/:id",blogController.deleteBlogs)
 
