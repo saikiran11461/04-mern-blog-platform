@@ -14,7 +14,8 @@ const BlogComopnent = ({
   createdAt,
   authId,
   showActions,
-  deleteHandler
+  deleteHandler,
+  coverImage
 }) => {
   const isAuth = authId === author._id;
 
@@ -69,7 +70,7 @@ const BlogComopnent = ({
           </Typography>
           <Box
             component="img"
-            src="https://images.unsplash.com/photo-1421789665209-c9b2a435e3dc?q=80&w=3542&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" // Replace with actual image path
+            src={coverImage}
             alt="Blog preview"
             sx={{
               width: "100%",
@@ -110,7 +111,7 @@ const BlogComopnent = ({
                   },
                 }}
               >
-                {item.name}
+                {item}
               </Button>
             ))}
           </Box>

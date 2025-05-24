@@ -41,6 +41,7 @@ const BlogPage = () => {
             createdAt={item.createdAt}
             authId={authId}
             showActions={false}
+            coverImage = {item.coverImage}
 
           />
         ))

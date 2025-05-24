@@ -63,7 +63,8 @@ const blogController = {
   },
 
   createBlogs: async (req, res) => {
-    const author = req.user.id;
+    const author = req.body.author;
+   
     if (!author) {
       return res.send({ message: "author not find pleae login again " });
     }

@@ -4,7 +4,7 @@ import axios from "axios";
 const  BASE_URL =  process.env.REACT_APP_API_URL
 export const getBlogs = () =>(dispatch)=>{
      dispatch({type:types.GET_BLOG_REQUEST})
-    return axios.get(`${BASE_URL}/blogs`,{withCredentials:true})
+    return axios.get(`${BASE_URL}/blogs`)
     .then(res=>{
         
       return  dispatch({type:types.GET_BLOG_SUCCESS, payload:res.data})
@@ -37,3 +37,13 @@ export const deleteUserBlogs = (id) =>(dispatch) =>{
    })
 }
 
+export const createBlogs = (payload) =>(dispatch)=>{
+   dispatch({type:types.CREATE_USER_BLOGS_REQUREST})
+  return axios.post(`${BASE_URL}/blogs/add`, payload,{withCredentials:true})
+   .then(res=>{
+   return dispatch({type:types.CREATE_USER_BLOGS_SUCCESS, payload:res})
+   })
+   .catch(err=>{
+   return dispatch({type:types.CREATE_USER_BLOGS_FAILURE,payload:err})
+   })
+}

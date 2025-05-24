@@ -54,8 +54,8 @@ const userController = {
                     maxAge: 1000 * 60 * 60 * 24 * 7,
                   });
             }
-          
 
+            
             return res.status(200).send({message:"user logged in success", id:user._id,email:user.email,name:user.name })
         } catch (error) {
             return res.status(500).send({message:error})

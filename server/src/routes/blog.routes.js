@@ -8,10 +8,10 @@ const {parser} = require("../middlewares/FileUploads")
 const blogRouter = express.Router();
 
 
-blogRouter.get("/",authentication, blogController.getBlogs);
+blogRouter.get("/", blogController.getBlogs);
 blogRouter.get("/userblogs",authentication, blogController.userBlogs)
 blogRouter.get("/:id", blogController.getSingleBlogs)
-blogRouter.post("/add", authentication, parser.single("coverImage"),attachAuthenticator, blogValidation,validateRequest, blogController.createBlogs)
+blogRouter.post("/add", authentication,validateRequest, parser.single("coverImage"),attachAuthenticator, blogValidation, blogController.createBlogs)
 blogRouter.patch("/:id", blogController.patchBlogs)
 blogRouter.delete("/:id",blogController.deleteBlogs)
 

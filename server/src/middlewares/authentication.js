@@ -4,7 +4,7 @@ require("dotenv").config();
 const authentication = (req, res, next) => {
   
   const token = req.cookies?.token;
-  
+
   
   if (!token) {
     return res
@@ -21,6 +21,7 @@ const authentication = (req, res, next) => {
 
 
     req.user = decoded;
+    
     next();
   });
 };
