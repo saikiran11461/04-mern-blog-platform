@@ -1,3 +1,5 @@
+//reducer js
+
 import * as types from "./actionTypes"
 
 
